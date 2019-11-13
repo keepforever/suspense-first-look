@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
+import { createResource } from './utils/PersonApi'
+import Person from './comps/Person'
+import Number from './comps/Number';
+
+// randomuser.me/api for toy data
+
+const resource = createResource();
 
 function App() {
     return (
@@ -10,10 +17,20 @@ function App() {
             <div
                 style={{
                     background: 'grey',
-                    minHeight: '90vh'
+                    minHeight: '90vh',
+                    color: 'white'
                 }}
-            >
-                
+            >   
+                <h4>Adjacent, but not inside "Suspense" </h4>
+                <Suspense fallback={<h1 style={{color: 'black'}}>Person FALLBACK...</h1>}>
+                    <p>paraph inside Person wrapping "Suspense" component</p>
+                    <Person resource={resource} />
+                </Suspense>
+                <Suspense fallback={<h1 style={{color: 'black'}}>Number FALLBACK...</h1>}>
+                    <p>paraph inside Person wrapping "Suspense" component</p>
+                    <Number resource={resource} />
+                </Suspense>
+
             </div>
         </div>
     );
