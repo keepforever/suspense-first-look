@@ -38,11 +38,11 @@ export const wrapPromise = promise => {
     };
 };
 
-
 /* Wait three seconds then return a random number */
 export const randomNumber = () => {
     return new Promise(res => setTimeout(() => res(Math.random()), 3000));
-  };
+};
+
 
 /* We call wrapPromise over our fetch person function */
 export const createResource = () => {
@@ -50,6 +50,20 @@ export const createResource = () => {
         // our fetchPerson returns a Promise, and we wrap that Promise to make sure it fits the Suspense API.
         person: wrapPromise(fetchPerson()),
         num: wrapPromise(randomNumber())
-
     };
+};
+
+
+/* HELPERS FOR SUSPENSE GRID COMPONENT */
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+export const randomNumberAndTimeout = () => {
+    return new Promise(res =>
+        setTimeout(
+            () => res(Math.round(Math.random() * 1000)),
+            getRandomArbitrary(1000, 5000)
+        )
+    );
 };
