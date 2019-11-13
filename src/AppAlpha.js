@@ -1,10 +1,13 @@
 import React, { Suspense } from 'react';
 import './App.css';
-import { createResource } from './utils/PersonApi'
-import Person from './comps/Person'
+import { createResource } from './utils/PersonApi';
+import Person from './comps/Person';
 import Number from './comps/Number';
-
 // randomuser.me/api for toy data
+
+/*
+    In this version of App.js, we demonstrate a different <Suspense /> nesting strategy.
+*/
 
 const resource = createResource();
 
@@ -20,14 +23,16 @@ function App() {
                     minHeight: '90vh',
                     color: 'white'
                 }}
-            >   
-                <h4>Adjacent, but not inside "Suspense" </h4>
-                <Suspense fallback={<h1 style={{color: 'black'}}>Person FALLBACK...</h1>}>
-                    <p>paraph inside Person wrapping "Suspense" component</p>
+            >
+                <h4 style={{ margin: 0 }}>
+                    Adjacent, but not inside "Suspense"{' '}
+                </h4>
+                <Suspense
+                    fallback={
+                        <h1 style={{ color: 'blue' }}>AppAlpha fallback...</h1>
+                    }
+                >
                     <Person resource={resource} />
-                </Suspense>
-                <Suspense fallback={<h1 style={{color: 'black'}}>Number FALLBACK...</h1>}>
-                    <p>paraph inside Person wrapping "Suspense" component</p>
                     <Number resource={resource} />
                 </Suspense>
             </div>

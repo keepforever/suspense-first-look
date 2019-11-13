@@ -7,13 +7,14 @@ const Person = ({ resource }) => {
         <div
             style={{
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
-                paddingLeft: '30px'
+                justifyContent: 'space-around',
+                paddingLeft: '30px',
+                outline: '1px solid yellow'
             }}
         >
-            <h3>Hello Person</h3>
+            <h3>Person</h3>
             <p>{person.gender}</p>
             <p>
                 {person.name.title} {person.name.last}

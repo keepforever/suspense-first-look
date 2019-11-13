@@ -6,7 +6,7 @@ export const fetchPerson = () => {
 
 /* We must wrap this promise to work with how the Suspense api is designed. */
 
-const wrapPromise = promise => {
+export const wrapPromise = promise => {
     let status = 'pending'; // keep track of if promise is complete
     let result = ''; // store extra data: i.e. data or error from promise.
     let suspender = promise.then(
